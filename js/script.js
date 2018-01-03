@@ -5,12 +5,26 @@
 // CREATE THE FUNCTIONS BELOW
 
 // Document Ready Function. All of your jQuery should go in here. 
+/*global $*/
 $( document ).ready(function() {
-  
-
-
-
+	$("button").click(function() {
+  		var userInput = $("input").val();
+  		var pigLatin = pigLatinizer(userInput);
+  		$("div").html(pigLatin);
+  }); 
 });
+	function pigLatinizer(word) {
+		var vowels = ["a" , "e" , "i" , "o" , "u"];
+		var firstLetter = word[0];
+		var indexOf = vowels.indexOf(firstLetter);
+		var beginsWithVowel = indexOf > -1;
+			if(beginsWithVowel){
+			return word + "yay"
+			} else {
+				return word + "ay";
+			}
+	}
+	
 
 
 // Create the wordToPigLatin function that takes a word as a parameter and returns a transfromed word. 
