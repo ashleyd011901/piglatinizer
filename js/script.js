@@ -5,27 +5,47 @@
 // CREATE THE FUNCTIONS BELOW
 
 // Document Ready Function. All of your jQuery should go in here. 
-/*global $*/
-$( document ).ready(function() {
-	$("button").click(function() {
-  		var userInput = $("input").val();
-  		var pigLatin = pigLatinizer(userInput);
-  		$("div").html(pigLatin);
-  }); 
-});
-	function pigLatinizer(word) {
-		var vowels = ["a" , "e" , "i" , "o" , "u"];
-		var firstLetter = word[0];
-		var indexOf = vowels.indexOf(firstLetter);
-		var beginsWithVowel = indexOf > -1;
-			if(beginsWithVowel){
-			return word + "yay"
-			} else {
-				return word + "ay";
-			}
-	}
-	
 
+/*global $*/
+	
+$(document).ready(function() {
+    console.log("page is loaded")
+   $("button").click(function() {
+     var userInput = $("input").val();
+     console.log("user input is "+ userInput);
+     var pigLatin = splitSentence(userInput); 
+      console.log("piglatin is "+ pigLatin);
+      $("#answer").html(pigLatin);
+     
+   });
+});
+  function pigLatinizer(word) {
+    var vowels =["a","e","i","o","u"];
+    var firstLetter = word[0];
+    var indexOf = vowels.indexOf(firstLetter);
+    console.log("index of "+ indexOf);
+    var beginsWithVowel = indexOf > -1;
+     if(beginsWithVowel){ 
+       return word + "yay";  
+     } else { 
+       return word.slice(1) + word.slice(0,1) + "ay";  
+     }            
+}
+
+
+
+function splitSentence(userInput){
+    var split = userInput.split(" ");
+    var output = [];
+    for (var i = 0; i < split.length; i++){
+    var word = pigLatinizer(split[i]);
+        // push word into output
+        output.push(word);
+    }
+    return output.join(" ");
+}
+
+// functions you'll need are .split and .slice 
 
 // Create the wordToPigLatin function that takes a word as a parameter and returns a transfromed word. 
 
